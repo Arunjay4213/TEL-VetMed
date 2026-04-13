@@ -1,3 +1,5 @@
+// stub.go is a fake translator that labels text with the language direction
+// but does not actually translate. Used during development.
 package translation
 
 import "fmt"

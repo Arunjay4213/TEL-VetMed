@@ -1,3 +1,8 @@
+// main.go is the entry point for the veterinary voice agent server. It wires
+// all the services together (ASR, language detection, LLM, translation, TTS),
+// loads environment variables like the Deepgram API key, and starts an HTTP
+// server with two endpoints: /health to check the server is running, and
+// /interact to process a voice interaction.
 package main
 
 import (

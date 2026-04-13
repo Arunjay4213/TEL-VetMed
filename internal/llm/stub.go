@@ -1,3 +1,5 @@
+// stub.go is a fake LLM that echoes back whatever the user said.
+// Used during development so the pipeline runs without a real API call.
 package llm
 
 import "fmt"

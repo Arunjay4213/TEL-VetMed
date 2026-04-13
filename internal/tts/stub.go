@@ -1,3 +1,5 @@
+// stub.go is a fake TTS service that returns the response text as raw bytes
+// instead of real audio. Used during development.
 package tts
 
 type Stub struct{}
