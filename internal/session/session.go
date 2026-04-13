@@ -1,3 +1,8 @@
+// session.go tracks the history of a conversation so the system remembers
+// context across multiple turns. For example, if a vet says "give that cow
+// penicillin" and the worker asks "how much?", the session is what lets the
+// system know which cow and which drug they are still talking about.
+// Each session is tied to a unique ID and is cleared when the conversation ends.
 package session
 
 import (

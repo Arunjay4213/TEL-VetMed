@@ -1,3 +1,8 @@
+// pipeline.go ties all the services together into a single conversation turn.
+// When a user speaks, this file is what coordinates the full journey:
+// audio goes in, spoken response comes out. It calls ASR to transcribe,
+// language detection to identify the language, the LLM to generate a reply,
+// translation if needed, and TTS to speak the response aloud.
 package pipeline
 
 import (
@@ -11,7 +16,6 @@ import (
 	"github.com/Arunjay4213/vetmed/internal/tts"
 )
 
-const ConfidenceThreshold = 0.6
 
 type Pipeline struct {
 	ASR         asr.Service
@@ -30,12 +34,12 @@ type Result struct {
 }
 
 func (p *Pipeline) ProcessInteraction(audio []byte, sessionID string) (Result, error) {
-	transcript, err := p.ASR.Transcribe(audio)
+	transcript, err := p.ASR.Transcribe(audio, "")
 	if err != nil {
 		return Result{}, fmt.Errorf("asr failed: %w", err)
 	}
 
-	if transcript.Confidence < ConfidenceThreshold {
+	if transcript.Text == "" {
 		return p.requestRepeat(sessionID)
 	}
 

@@ -1,3 +1,5 @@
+// stub.go is a fake language detector that always returns English.
+// Used during development so the pipeline runs end-to-end without a real detector.
 package langdetect
 
 type Stub struct{}
